@@ -3,13 +3,12 @@ import Characters from "./Characters"
 import Navbar from "./Navbar"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Pagination from "./paginacion"
+import Buscador from "./search"
 
 
 function MiApi () {
-    
-    
-    const [characters, setCharacters] = useState([])
 
+    const [characters, setCharacters] = useState([])
     const [info, setInfo] = useState({})
     
     const initialUrl = "https://rickandmortyapi.com/api/character"
@@ -38,18 +37,22 @@ function MiApi () {
         fetchCharacters(initialUrl)
     }, [])
 
+    
+
     return (
 
         <>
             <Navbar brand="Rick And Morty App" />
-        
+            <div className="container-fluid">
+                <h2 className="text-center">React Search</h2>
+                <Buscador/>
+            </div>
             <div className="container mt-5" href="">
                 <Pagination prev={info.prev}next={info.next}
                     onPrevious={onPrevious} onNext={onNext} />
                 <Characters characters={characters} />
                 <Pagination prev={info.prev}next={info.next}
                     onPrevious={onPrevious} onNext={onNext} />
-                
             </div>
         </>
     )
